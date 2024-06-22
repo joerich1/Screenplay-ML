@@ -9,7 +9,7 @@
 <body>
     <div id="plot" style="width: 100%; height: 600px;"></div>
     <script>
-        fetch('https://raw.githubusercontent.com/joerich1/Screenplays-ML/Exports/Data/kmeans_length_data.json')
+        fetch('kmeans_length_data.json')
             .then(response => response.json())
             .then(data => {
                 const xData = data.map(item => item.total_chars);
