@@ -5,20 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adventure Animation</title>
     <style>
-        #scene {
-            width: 300px;
-            height: 200px;
-            background-color: #87CEEB;
-            position: relative;
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
             overflow: hidden;
+        }
+        #scene {
+            width: 100%;
+            height: 100%;
+            position: relative;
         }
         #adventurer {
             width: 20px;
             height: 40px;
-            background-color: #000;
+            background-color: #fff;
             position: absolute;
-            bottom: 0;
-            left: 20px;
+            bottom: 20%;
+            left: 10%;
         }
         #hat {
             width: 20px;
@@ -28,13 +34,13 @@
             top: -10px;
         }
         #boulder {
-            width: 40px;
-            height: 40px;
+            width: 60px;
+            height: 60px;
             background-color: #A9A9A9;
             border-radius: 50%;
             position: absolute;
-            bottom: 0;
-            right: -40px;
+            bottom: 20%;
+            left: 5%;
         }
     </style>
 </head>
@@ -49,17 +55,24 @@
     <script>
         const adventurer = document.getElementById('adventurer');
         const boulder = document.getElementById('boulder');
-        let adventurerPos = 20;
-        let boulderPos = 300;
+        let adventurerPos = 10;
+        let boulderPos = 5;
+        let speed = 0.2;
 
         function animate() {
-            adventurerPos += 1;
-            boulderPos -= 2;
-            adventurer.style.left = adventurerPos + 'px';
-            boulder.style.right = boulderPos + 'px';
+            adventurerPos += speed;
+            boulderPos += speed * 0.95; // Boulder moves slightly slower
 
-            if (boulderPos > -40) {
+            adventurer.style.left = adventurerPos + '%';
+            boulder.style.left = boulderPos + '%';
+
+            if (adventurerPos < 90) {
                 requestAnimationFrame(animate);
+            } else {
+                // Reset positions for continuous loop
+                adventurerPos = -10;
+                boulderPos = -15;
+                animate();
             }
         }
 
