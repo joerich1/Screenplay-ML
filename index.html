@@ -3,125 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advanced Lightsaber Duel</title>
+    <title>Adventure Animation</title>
     <style>
-        body {
-            background-color: #000;
+        #scene {
+            width: 300px;
+            height: 200px;
+            background-color: #87CEEB;
+            position: relative;
             overflow: hidden;
         }
-        .scene {
-            width: 100vw;
-            height: 100vh;
-            position: relative;
-        }
-        .figure {
-            position: absolute;
-            bottom: 20px;
-            width: 50px;
-            height: 80px;
-        }
-        .figure1 { 
-            left: -50px; 
-            animation: move1 20s linear infinite;
-        }
-        .figure2 { 
-            left: -100px; 
-            animation: move2 20s linear infinite, somersault 2s linear infinite;
-        }
-        .body {
-            width: 2px;
+        #adventurer {
+            width: 20px;
             height: 40px;
-            background-color: white;
+            background-color: #000;
             position: absolute;
             bottom: 0;
-            left: 24px;
-        }
-        .head {
-            width: 10px;
-            height: 10px;
-            background-color: white;
-            border-radius: 50%;
-            position: absolute;
-            bottom: 40px;
             left: 20px;
         }
-        .arm {
-            width: 30px;
-            height: 2px;
-            background-color: white;
-            position: absolute;
-            bottom: 30px;
-            left: 24px;
-            transform-origin: left;
-            animation: swing 0.5s alternate infinite;
-        }
-        .lightsaber {
-            width: 40px;
-            height: 4px;
-            position: absolute;
-            top: -1px;
-            left: 30px;
-            transform-origin: left;
-        }
-        .figure1 .lightsaber { background-color: #0ff; box-shadow: 0 0 10px #0ff; }
-        .figure2 .lightsaber { background-color: #f00; box-shadow: 0 0 10px #f00; }
-        .leg {
+        #hat {
             width: 20px;
-            height: 2px;
-            background-color: white;
+            height: 10px;
+            background-color: #8B4513;
+            position: absolute;
+            top: -10px;
+        }
+        #boulder {
+            width: 40px;
+            height: 40px;
+            background-color: #A9A9A9;
+            border-radius: 50%;
             position: absolute;
             bottom: 0;
-            transform-origin: left;
-        }
-        .leg1 { left: 24px; animation: legSwing 0.5s alternate infinite; }
-        .leg2 { left: 24px; animation: legSwing 0.5s alternate-reverse infinite; }
-
-        @keyframes move1 {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(30vw); }
-            50% { transform: translateX(60vw); }
-            75% { transform: translateX(90vw); }
-        }
-        @keyframes move2 {
-            0%, 100% { transform: translateX(0) scaleX(1); }
-            25% { transform: translateX(40vw) scaleX(1); }
-            50% { transform: translateX(50vw) scaleX(-1); }
-            75% { transform: translateX(70vw) scaleX(-1); }
-        }
-        @keyframes swing {
-            0% { transform: rotate(-30deg); }
-            100% { transform: rotate(30deg); }
-        }
-        @keyframes legSwing {
-            0% { transform: rotate(-20deg); }
-            100% { transform: rotate(20deg); }
-        }
-        @keyframes somersault {
-            0%, 100% { transform: rotate(0deg); }
-            50% { transform: rotate(360deg); }
+            right: -40px;
         }
     </style>
 </head>
 <body>
-    <div class="scene">
-        <div class="figure figure1">
-            <div class="body"></div>
-            <div class="head"></div>
-            <div class="arm">
-                <div class="lightsaber"></div>
-            </div>
-            <div class="leg leg1"></div>
-            <div class="leg leg2"></div>
+    <div id="scene">
+        <div id="adventurer">
+            <div id="hat"></div>
         </div>
-        <div class="figure figure2">
-            <div class="body"></div>
-            <div class="head"></div>
-            <div class="arm">
-                <div class="lightsaber"></div>
-            </div>
-            <div class="leg leg1"></div>
-            <div class="leg leg2"></div>
-        </div>
+        <div id="boulder"></div>
     </div>
+
+    <script>
+        const adventurer = document.getElementById('adventurer');
+        const boulder = document.getElementById('boulder');
+        let adventurerPos = 20;
+        let boulderPos = 300;
+
+        function animate() {
+            adventurerPos += 1;
+            boulderPos -= 2;
+            adventurer.style.left = adventurerPos + 'px';
+            boulder.style.right = boulderPos + 'px';
+
+            if (boulderPos > -40) {
+                requestAnimationFrame(animate);
+            }
+        }
+
+        animate();
+    </script>
 </body>
 </html>
