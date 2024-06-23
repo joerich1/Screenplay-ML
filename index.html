@@ -5,7 +5,93 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Holographic Projection Animation</title>
     <style>
+        body {<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Futuristic City Hologram Animation</title>
+    <style>
         body {
+            margin: 0;
+            height: 100vh;
+            background-color: #0a0a0a;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .scene {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        .city {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 40%;
+            background: linear-gradient(to top, #000, transparent);
+        }
+        .building {
+            position: absolute;
+            bottom: 0;
+            background-color: #111;
+            width: 40px;
+        }
+        .hologram {
+            position: absolute;
+            width: 200px;
+            height: 400px;
+            background: linear-gradient(45deg, rgba(255,20,147,0.3), rgba(138,43,226,0.3));
+            border: 2px solid #ff69b4;
+            bottom: 20%;
+            left: 20%;
+            animation: flicker 5s infinite;
+        }
+        .arm {
+            position: absolute;
+            width: 100px;
+            height: 2px;
+            background-color: #ff69b4;
+            top: 30%;
+            left: calc(20% + 200px);
+            transform-origin: left;
+            animation: point 3s infinite;
+        }
+        .person {
+            position: absolute;
+            width: 30px;
+            height: 60px;
+            background-color: #444;
+            bottom: 20%;
+            right: 20%;
+        }
+        @keyframes flicker {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 0.6; }
+        }
+        @keyframes point {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(-15deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="scene">
+        <div class="city">
+            <div class="building" style="height: 60%; left: 10%;"></div>
+            <div class="building" style="height: 80%; left: 30%;"></div>
+            <div class="building" style="height: 70%; left: 50%;"></div>
+            <div class="building" style="height: 90%; left: 70%;"></div>
+            <div class="building" style="height: 75%; left: 90%;"></div>
+        </div>
+        <div class="hologram"></div>
+        <div class="arm"></div>
+        <div class="person"></div>
+    </div>
+</body>
+</html>
             margin: 0;
             height: 100vh;
             background-color: #000;
