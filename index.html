@@ -24,7 +24,7 @@
             background-color: #fff;
             position: absolute;
             bottom: 20%;
-            left: 10%;
+            left: -5%;
         }
         #hat {
             width: 20px;
@@ -40,7 +40,7 @@
             border-radius: 50%;
             position: absolute;
             bottom: 20%;
-            left: 5%;
+            left: -10%;
         }
     </style>
 </head>
@@ -55,23 +55,26 @@
     <script>
         const adventurer = document.getElementById('adventurer');
         const boulder = document.getElementById('boulder');
-        let adventurerPos = 10;
-        let boulderPos = 5;
-        let speed = 0.2;
+        let adventurerPos = -5;
+        let boulderPos = -10;
+        const adventurerSpeed = 0.2;
+        const boulderSpeed = 0.3;
 
         function animate() {
-            adventurerPos += speed;
-            boulderPos += speed * 0.95; // Boulder moves slightly slower
-
+            adventurerPos += adventurerSpeed;
             adventurer.style.left = adventurerPos + '%';
-            boulder.style.left = boulderPos + '%';
 
-            if (adventurerPos < 90) {
+            if (adventurerPos >= 25) {
+                boulderPos += boulderSpeed;
+                boulder.style.left = boulderPos + '%';
+            }
+
+            if (adventurerPos < 100) {
                 requestAnimationFrame(animate);
             } else {
                 // Reset positions for continuous loop
-                adventurerPos = -10;
-                boulderPos = -15;
+                adventurerPos = -5;
+                boulderPos = -10;
                 animate();
             }
         }
