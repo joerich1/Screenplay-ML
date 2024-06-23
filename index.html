@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lightsaber Duel</title>
+    <title>Advanced Lightsaber Duel</title>
     <style>
         body {
             background-color: #000;
@@ -19,10 +19,15 @@
             bottom: 20px;
             width: 50px;
             height: 80px;
-            animation: move 10s linear infinite;
         }
-        .figure1 { left: -50px; }
-        .figure2 { left: -100px; }
+        .figure1 { 
+            left: -50px; 
+            animation: move1 20s linear infinite;
+        }
+        .figure2 { 
+            left: -100px; 
+            animation: move2 20s linear infinite, somersault 2s linear infinite;
+        }
         .body {
             width: 2px;
             height: 40px;
@@ -66,17 +71,34 @@
             background-color: white;
             position: absolute;
             bottom: 0;
+            transform-origin: left;
         }
-        .leg1 { left: 24px; transform: rotate(30deg); }
-        .leg2 { left: 24px; transform: rotate(-30deg); }
+        .leg1 { left: 24px; animation: legSwing 0.5s alternate infinite; }
+        .leg2 { left: 24px; animation: legSwing 0.5s alternate-reverse infinite; }
 
-        @keyframes move {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(calc(100vw + 100px)); }
+        @keyframes move1 {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(30vw); }
+            50% { transform: translateX(60vw); }
+            75% { transform: translateX(90vw); }
+        }
+        @keyframes move2 {
+            0%, 100% { transform: translateX(0) scaleX(1); }
+            25% { transform: translateX(40vw) scaleX(1); }
+            50% { transform: translateX(50vw) scaleX(-1); }
+            75% { transform: translateX(70vw) scaleX(-1); }
         }
         @keyframes swing {
             0% { transform: rotate(-30deg); }
             100% { transform: rotate(30deg); }
+        }
+        @keyframes legSwing {
+            0% { transform: rotate(-20deg); }
+            100% { transform: rotate(20deg); }
+        }
+        @keyframes somersault {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(360deg); }
         }
     </style>
 </head>
