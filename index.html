@@ -3,111 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adventure Animation</title>
+    <title>Holographic Projection Animation</title>
     <style>
-        body, html {
+        body {
             margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
+            height: 100vh;
             background-color: #000;
             overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
-        #scene {
-            width: 100%;
-            height: 100%;
+        .scene {
+            width: 300px;
+            height: 200px;
             position: relative;
         }
-        #adventurer {
-            width: 2px;
+        .hologram {
+            position: absolute;
+            width: 100px;
+            height: 150px;
+            background-color: rgba(0, 255, 255, 0.3);
+            border: 2px solid cyan;
+            top: 0;
+            left: 100px;
+            animation: flicker 5s infinite;
+        }
+        .person {
+            position: absolute;
+            width: 20px;
             height: 40px;
             background-color: #fff;
-            position: absolute;
-            bottom: 20%;
-            left: -5%;
+            bottom: 0;
+            left: 140px;
         }
-        #hat {
-            width: 20px;
-            height: 10px;
-            background-color: #8B4513;
+        .arm {
             position: absolute;
-            top: -10px;
-            left: -9px;
-        }
-        #arms {
             width: 30px;
             height: 2px;
-            background-color: #fff;
-            position: absolute;
-            top: 10px;
-            left: -14px;
+            background-color: cyan;
+            top: 100px;
+            left: 150px;
+            transform-origin: left;
+            animation: point 3s infinite;
         }
-        #legs {
-            width: 20px;
-            height: 2px;
-            background-color: #fff;
-            position: absolute;
-            bottom: -2px;
-            left: -9px;
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
         }
-        #statue {
-            width: 10px;
-            height: 15px;
-            background-color: gold;
-            position: absolute;
-            top: 5px;
-            left: 16px;
-        }
-        #boulder {
-            width: 60px;
-            height: 60px;
-            background-color: #A9A9A9;
-            border-radius: 50%;
-            position: absolute;
-            bottom: 20%;
-            left: -10%;
+        @keyframes point {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(-30deg); }
         }
     </style>
 </head>
 <body>
-    <div id="scene">
-        <div id="adventurer">
-            <div id="hat"></div>
-            <div id="arms"></div>
-            <div id="legs"></div>
-            <div id="statue"></div>
-        </div>
-        <div id="boulder"></div>
+    <div class="scene">
+        <div class="hologram"></div>
+        <div class="person"></div>
+        <div class="arm"></div>
     </div>
-
-    <script>
-        const adventurer = document.getElementById('adventurer');
-        const boulder = document.getElementById('boulder');
-        let adventurerPos = -5;
-        let boulderPos = -10;
-        const adventurerSpeed = 0.2;
-        const boulderSpeed = 0.27; // Reduced by 10% from 0.3
-
-        function animate() {
-            adventurerPos += adventurerSpeed;
-            adventurer.style.left = adventurerPos + '%';
-
-            if (adventurerPos >= 25) {
-                boulderPos += boulderSpeed;
-                boulder.style.left = boulderPos + '%';
-            }
-
-            if (adventurerPos < 100) {
-                requestAnimationFrame(animate);
-            } else {
-                // Reset positions for continuous loop
-                adventurerPos = -5;
-                boulderPos = -10;
-                animate();
-            }
-        }
-
-        animate();
-    </script>
 </body>
 </html>
