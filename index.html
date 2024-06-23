@@ -19,7 +19,7 @@
             position: relative;
         }
         #adventurer {
-            width: 20px;
+            width: 2px;
             height: 40px;
             background-color: #fff;
             position: absolute;
@@ -32,6 +32,31 @@
             background-color: #8B4513;
             position: absolute;
             top: -10px;
+            left: -9px;
+        }
+        #arms {
+            width: 30px;
+            height: 2px;
+            background-color: #fff;
+            position: absolute;
+            top: 10px;
+            left: -14px;
+        }
+        #legs {
+            width: 20px;
+            height: 2px;
+            background-color: #fff;
+            position: absolute;
+            bottom: -2px;
+            left: -9px;
+        }
+        #statue {
+            width: 10px;
+            height: 15px;
+            background-color: gold;
+            position: absolute;
+            top: 5px;
+            left: 16px;
         }
         #boulder {
             width: 60px;
@@ -48,6 +73,9 @@
     <div id="scene">
         <div id="adventurer">
             <div id="hat"></div>
+            <div id="arms"></div>
+            <div id="legs"></div>
+            <div id="statue"></div>
         </div>
         <div id="boulder"></div>
     </div>
@@ -58,7 +86,7 @@
         let adventurerPos = -5;
         let boulderPos = -10;
         const adventurerSpeed = 0.2;
-        const boulderSpeed = 0.3;
+        const boulderSpeed = 0.27; // Reduced by 10% from 0.3
 
         function animate() {
             adventurerPos += adventurerSpeed;
